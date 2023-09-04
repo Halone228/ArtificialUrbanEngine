@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.25)
+project(AUE_main)
+set(CMAKE_CXX_STANDARD 20)
+add_subdirectory(${PROJECT_SOURCE_DIR}/AUE)
+add_library(AUE_main main.h main.cpp)
+target_link_libraries(AUE_main AUE_core AUE_base)
