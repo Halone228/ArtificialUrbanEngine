@@ -16,7 +16,7 @@ namespace aue{
     static std::map<uint, std::vector<DummyObject*>> checked_objs;
     static std::map<uint, std::vector<DummyObject*>> checked_by;
     typedef std::string service_type;
-    class BaseMunicipal : protected BaseObject {
+    class BaseMunicipal : public BaseObject {
     protected:
         const uint max_employees;
         const uint radius;
