@@ -21,13 +21,11 @@ namespace aue{
         const uint max_employees;
         const uint radius;
         const service_type serviceType;
-        uint employees{};
     public:
         [[nodiscard]] service_type get_service_type() const { return serviceType; };
         BaseMunicipal(const shape_type& shape, uint employees, uint radius, object_uuid_t uuid, service_type s_t) :
         BaseObject(shape, uuid), max_employees(employees), radius(radius), serviceType(s_t){};
-        [[nodiscard]] uint get_employees() const;
-        AnswerCodes set_employees(uint employees);
+        [[nodiscard]] uint get_max_employees() const { return max_employees; }
         [[nodiscard]] object_type& get_object_type() const override;
     };
 }
