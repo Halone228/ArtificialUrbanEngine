@@ -11,8 +11,12 @@ namespace aue {
         points.insert(from); points.insert(to);
     }
 
+    route_map_t RoutesMap::get_route_map() const {
+        return route_map;
+    }
+
     Point2D RoutesMap::find_closest_point(aue::Point2D point) {
-        if(points.size() == 0) return {};
+        if(points.empty()) return {};
         long double min_dist = std::numeric_limits<long double>::max();
         Point2D min_point{};
         for(auto& i : points){

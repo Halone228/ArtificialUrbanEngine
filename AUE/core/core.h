@@ -15,7 +15,7 @@ namespace aue {
         std::vector<BaseMetric*>* all_metrics = &metrics_register;
     public:
         AnswerCodes place_object(table_id_t obj, Point2D pos);
-        AnswerCodes place_route(route_id_t route, Point2D start, Point2D end);
+        AnswerCodes place_route(table_id_t route, Point2D start, Point2D end);
         WorldMap* get_map();
         std::vector<problem_t> get_metrics();
         Core() : map("base"){};

@@ -9,7 +9,6 @@
 #include <string>
 #include "../types.h"
 #include "../helpers.h"
-#include "../BaseWorld/dummyobject.h"
 #include "../BaseWorld/worldmap.h"
 #include "baseregisters.h"
 
@@ -17,9 +16,12 @@ namespace aue {
     static object_type object_counter;
     static object_type living_object = object_counter++;
     static object_type municipal_object = object_counter++;
+    class BaseObject;
+    static GenericRegister<BaseObject*> ObjectRegister;
+    class DummyObject;
     class BaseObject {
     protected:
-        object_uuid_t object_id;
+        const object_uuid_t object_id;
         table_id_t id;
         const shape_type shape_points;
     public:

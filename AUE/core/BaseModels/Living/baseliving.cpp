@@ -16,10 +16,11 @@ ushort aue::BaseLiving::get_floors_count() const {
     return this->floor_count;
 }
 
-uint aue::BaseLiving::get_living() const {
-    return this->living;
-}
-
 object_type& aue::BaseLiving::get_object_type() const {
     return living_object;
 }
+
+uint aue::BaseLiving::get_max_living() const {
+    return max_living;
+}
+

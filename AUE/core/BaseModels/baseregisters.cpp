@@ -15,19 +15,4 @@ namespace aue {
     Type TypesManager::get_type(ushort id) {
         return types[id];
     }
-
-    unsigned int ObjectRegister::register_object(BaseObject* obj) {
-        for(auto& i : reg_table){
-            if(i.second == obj) return i.first;
-        }
-        auto num = table_counter++;
-        reg_table[num] = obj;
-        return num;
-    }
-
-    BaseObject* ObjectRegister::get_object(unsigned int id) {
-        auto item = reg_table.find(id);
-        if(item == reg_table.end()){ return nullptr;}
-        return item->second;
-    }
 }

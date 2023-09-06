@@ -12,9 +12,10 @@ namespace aue{
         Point2D position;
         table_id_t parent_id;
     public:
+        DummyObject() : position(), parent_id(UINT32_MAX){};
         DummyObject(Point2D position, table_id_t obj);
-        [[nodiscard]] shape_type get_shape() const;
-        [[nodiscard]] Point2D get_pos() const;
+        [[nodiscard]] const Point2D& get_pos() const;
+        [[nodiscard]] table_id_t get_id() const {return parent_id;}
         static DummyObject* create(Point2D pos, table_id_t obj);
     };
 }

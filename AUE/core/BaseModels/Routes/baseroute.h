@@ -7,20 +7,18 @@
 #include <utility>
 #include <vector>
 #include <map>
-
 #include "string"
 #include "boost/uuid/uuid.hpp"
-#include "tuple"
+#include "../baseregisters.h"
 namespace aue {
     enum Directions{
         START_TO_END, END_TO_START, BIDIRECTIONAL
     };
-    class BaseRoute;
     typedef boost::uuids::uuid route_uuid_t;
     typedef ushort route_id_t;
     typedef const ushort* route_lines;
-    static ushort route_counter;
-    static std::map<route_id_t, const BaseRoute*> route_register;
+    class BaseRoute;
+    static GenericRegister<BaseRoute*> RouteRegister;
     class BaseRoute{
     private:
         const route_uuid_t uuid;
@@ -29,9 +27,7 @@ namespace aue {
         const route_id_t id;
     public:
         BaseRoute(route_uuid_t uuid, route_lines lines, std::string name) : uuid(uuid),
-        lines(lines), name(std::move(name)), id(route_counter++){
-            route_register[id] = this;
-        }
+        lines(lines), name(std::move(name)), id(RouteRegister.register_object(this)){}
         [[nodiscard]] ushort get_side_capacity(size_t idx) const { return lines[idx]; }
         [[nodiscard]] std::string get_name() const { return name; }
         [[nodiscard]] route_uuid_t get_uid() const {return uuid; }

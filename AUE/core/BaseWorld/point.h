@@ -7,7 +7,7 @@
 #include "vector"
 
 
-typedef long long intl;
+using intl = long double;
 namespace aue {
     class Point2D {
     private:
@@ -17,15 +17,17 @@ namespace aue {
 
         Point2D(intl, intl);
 
-        void setX(intl);
+        void setX(const intl _x){
+            this->x = _x;
+        };
 
-        void setY(intl);
+        void setY(const intl);
 
-        [[nodiscard]] intl getX() const;
+        [[nodiscard]] const intl getX() const;
 
-        [[nodiscard]] intl getY() const;
+        [[nodiscard]] const intl getY() const;
 
-        std::vector<intl> getArrPos();
+        std::vector<intl> getArrPos() const;
 
         bool operator==(const Point2D &other) const;
 
@@ -39,7 +41,9 @@ namespace aue {
 
         Point2D operator+(const Point2D &other) const;
 
-        [[nodiscard]] long double get_sqr_dist(const Point2D&) const;
+        [[nodiscard]] size_t hash() const;
+
+        [[nodiscard]] long double get_sqr_dist(const Point2D& other) const;
     };
 }
 #endif //AUE_POINT_H

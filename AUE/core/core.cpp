@@ -5,12 +5,12 @@
 #include "core.h"
 namespace aue {
     AnswerCodes Core::place_object(table_id_t obj, Point2D pos) {
-        DummyObject* new_object(DummyObject::create(pos, obj));
+        DummyObject new_object(pos, obj);
         return map.addObject(new_object);
     }
 
-    AnswerCodes Core::place_route(route_id_t route, Point2D start, Point2D end) {
-        map.add_route(start, end, route_register[route]);
+    AnswerCodes Core::place_route(table_id_t route, Point2D start, Point2D end) {
+        map.add_route(start, end, *RouteRegister.get_object(route));
         return AnswerCodes::OK;
     }
 
