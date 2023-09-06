@@ -47,8 +47,15 @@ namespace aue {
         }
         std::vector<Registered*> get_all_objects(){
             std::vector<Registered*> result(container.size());
-            int i = 0;
-            for(const auto& [key, value] : container) result[i++] = &value;
+            std::transform(
+                    container.begin(),
+                    container.end(),
+                    result.begin(),
+                    result.end(),
+                    [](auto& item){
+                        return item->second;
+                    }
+                    );
             return result;
         }
     };
