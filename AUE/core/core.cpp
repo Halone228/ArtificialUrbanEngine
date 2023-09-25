@@ -10,7 +10,7 @@ namespace aue {
     }
 
     AnswerCodes Core::place_route(table_id_t route, Point2D start, Point2D end) {
-        map.add_route(start, end, *RouteRegister.get_object(route));
+        map.add_route(start, end, RouteRegister.get_object(route));
         return AnswerCodes::OK;
     }
 

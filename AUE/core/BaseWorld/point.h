@@ -6,44 +6,50 @@
 #define AUE_POINT_H
 #include "vector"
 
-
 using intl = long double;
 namespace aue {
-    class Point2D {
-    private:
-        intl x, y;
-    public:
-        Point2D();
+class Point2D {
+private:
+  intl x, y;
 
-        Point2D(intl, intl);
+public:
+  Point2D();
 
-        void setX(const intl _x){
-            this->x = _x;
-        };
+  Point2D(intl, intl);
 
-        void setY(const intl);
+  void setX(const intl _x) { this->x = _x; };
 
-        [[nodiscard]] const intl getX() const;
+  void setY(const intl);
 
-        [[nodiscard]] const intl getY() const;
+  [[nodiscard]] const intl getX() const;
 
-        std::vector<intl> getArrPos() const;
+  [[nodiscard]] const intl getY() const;
 
-        bool operator==(const Point2D &other) const;
+  std::vector<intl> getArrPos() const;
 
-        bool operator>(const Point2D &other) const;
+  bool operator==(const Point2D &other) const;
 
-        bool operator<(const Point2D &other) const;
+  bool operator>(const Point2D &other) const;
 
-        bool operator<=(const Point2D &other) const;
+  bool operator<(const Point2D &other) const;
 
-        bool operator>=(const Point2D &other) const;
+  bool operator<=(const Point2D &other) const;
 
-        Point2D operator+(const Point2D &other) const;
+  bool operator>=(const Point2D &other) const;
 
-        [[nodiscard]] size_t hash() const;
+  Point2D operator+(const Point2D &other) const;
 
-        [[nodiscard]] long double get_sqr_dist(const Point2D& other) const;
-    };
-}
-#endif //AUE_POINT_H
+  Point2D operator*(const intl& other) const;
+
+  Point2D operator+(const intl& other) const;
+
+  Point2D operator-(const intl& other) const;
+
+  Point2D operator/(const intl& other) const;
+
+  [[nodiscard]] unsigned int hash() const;
+
+  [[nodiscard]] long double get_sqr_dist(const Point2D &other) const;
+};
+} // namespace aue
+#endif // AUE_POINT_H

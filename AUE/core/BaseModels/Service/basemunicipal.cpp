@@ -2,7 +2,7 @@
 // Created by halone on 10.08.2023.
 //
 
-#include "BaseMunicipal.h"
+#include "basemunicipal.h"
 
 
 object_type & aue::BaseMunicipal::get_object_type() const {

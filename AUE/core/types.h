@@ -13,5 +13,7 @@ using id_t = unsigned int;
 using object_type = unsigned short;
 using object_uuid_t = boost::uuids::uuid;
 using shape_type = std::vector<aue::Point2D>;
+using ushort = unsigned short;
+using uint = unsigned int;
 
 #endif //AUE_TYPES_H

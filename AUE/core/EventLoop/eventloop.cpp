@@ -14,7 +14,7 @@ namespace aue{
     subscriber_id_type EventLoop::add_subscriber(aue::descriptor_type desc, aue::func_type func) {
         subscribers[desc].push_front(func);
         auto sub = subscribers[desc].begin();
-        boost::uuids::uuid generated = boost::uuids::random_generator()();
+        auto generated = id_counter++;
         id_table[generated] = sub;
         return generated;
     }

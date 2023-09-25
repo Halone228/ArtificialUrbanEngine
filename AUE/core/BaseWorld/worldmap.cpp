@@ -3,6 +3,7 @@
 //
 
 #include "worldmap.h"
+#include "../EventLoop/eventloop.h"
 namespace aue {
     WObject* WorldMap::getObjectByPos(pos_t position) {
         auto val = map2D.find(position);
@@ -12,6 +13,9 @@ namespace aue {
     AnswerCodes WorldMap::addObject(WObject object) {
         if(map2D.find(object.get_pos()) != map2D.end()) return AnswerCodes::POSITION_ENGAGED;
         map2D[object.get_pos()] = object;
+        auto event = Event("map_update", {{"map", this}});
+        EventLoop::push_event(event);
+        EventLoop::process_queue();
         return AnswerCodes::OK;
     }
 

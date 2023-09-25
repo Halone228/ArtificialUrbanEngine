@@ -1,3 +1,4 @@
+set(LOCAL_BOOST OK)
 cmake_minimum_required(VERSION 3.25)
 project(AUE_main)
 set(CMAKE_CXX_STANDARD 20)

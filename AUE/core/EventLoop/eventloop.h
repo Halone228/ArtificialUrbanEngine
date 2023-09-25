@@ -14,6 +14,7 @@
 #include "boost/uuid/uuid.hpp"
 #include "boost/uuid/uuid_generators.hpp"
 #include "optional"
+#include "../types.h"
 namespace aue {
     typedef std::string descriptor_type;
     struct Event {
@@ -21,13 +22,13 @@ namespace aue {
         std::map<std::string, std::any> data;
         template<typename _T> std::optional<_T> get_by_name(std::string name);
     };
-    typedef std::function<void(Event)> func_type;
-    typedef boost::uuids::uuid subscriber_id_type;
+    typedef std::function<void(Event&)> func_type;
+    typedef uint subscriber_id_type;
+    static uint id_counter;
+    static std::list<Event> event_queue;
+    static std::map<descriptor_type, std::list<func_type>> subscribers;
+    static std::map<subscriber_id_type, std::list<func_type>::iterator> id_table;
     class EventLoop {
-    private:
-        static std::list<Event> event_queue;
-        static std::map<descriptor_type, std::list<func_type>> subscribers;
-        static std::map<subscriber_id_type, std::list<func_type>::iterator> id_table;
     public:
         static subscriber_id_type add_subscriber(descriptor_type desc, func_type func);
         static void push_event(Event& event);

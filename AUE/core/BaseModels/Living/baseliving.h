@@ -24,6 +24,7 @@ namespace aue{
         [[nodiscard]] ushort get_entrance_count() const;
         [[nodiscard]] object_type& get_object_type() const override;
         void on_built(aue::DummyObject obj, aue::WorldMap map) const override{};
+        ~BaseLiving() override = default;
     };
 }
 

@@ -1,7 +1,8 @@
+add_compile_definitions(BOOST_UUID_FORCE_AUTO_LINK)
+add_compile_definitions(BOOST_AUTO_LINK_NOMANGLE)
 find_package(Boost REQUIRED)
-message("BOOST :: OK")
-link_directories(${Boost_LIBRARY_DIRS})
-include_directories(${Boost_INCLUDE_DIRS})
+message("BOOST FOUND PATH ${Boost_INCLUDE_DIR}")
+
 add_library(AUE_core STATIC main.cpp
         BaseWorld/point.cpp
         BaseWorld/point.h
@@ -33,3 +34,5 @@ add_library(AUE_core STATIC main.cpp
         BaseModels/baseregisters.cpp
         BaseModels/baseregisters.h
 )
+target_include_directories(AUE_core PUBLIC ${Boost_INCLUDE_DIRS})
+target_link_libraries(AUE_core ${Boost_LIBRARIES})

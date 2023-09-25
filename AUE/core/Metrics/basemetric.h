@@ -5,6 +5,8 @@
 #ifndef AUE_BASEMETRIC_H
 #define AUE_BASEMETRIC_H
 #include "../BaseWorld/worldmap.h"
+#include "../BaseModels/baseregisters.h"
+#include "../EventLoop/eventloop.h"
 
 namespace aue {
     enum StatusEnum{
@@ -18,9 +20,19 @@ namespace aue {
     protected:
         const std::string name;
     public:
-        explicit BaseMetric(std::string& name) : name(name) { metrics_register.push_back(this); }
-        [[nodiscard]] virtual problem_t get_problems() const = 0;
-        virtual void update(WorldMap* map) const = 0;
+        explicit BaseMetric(std::string& name) : name(name) {
+            metrics_register.push_back(this);
+            EventLoop::add_subscriber(
+                "map_update",
+                [this](Event& event){
+                    auto map = event.get_by_name<WorldMap*>("map");
+                    if(!map.has_value()) return;
+                    this->update(map.value());
+                }
+            );
+        }
+        [[nodiscard]] virtual problem_t get_problems() = 0;
+        virtual void update(WorldMap* map) = 0;
         [[nodiscard]] std::string get_name() const { return name; }
     };
 }

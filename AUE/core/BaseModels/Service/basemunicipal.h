@@ -25,8 +25,10 @@ namespace aue{
         [[nodiscard]] service_type get_service_type() const { return serviceType; };
         BaseMunicipal(const shape_type& shape, uint employees, uint radius, object_uuid_t uuid, service_type s_t) :
         BaseObject(shape, uuid), max_employees(employees), radius(radius), serviceType(s_t){};
+        void on_built(aue::DummyObject obj, aue::WorldMap map) const override {};
         [[nodiscard]] uint get_max_employees() const { return max_employees; }
         [[nodiscard]] object_type& get_object_type() const override;
+        ~BaseMunicipal() override = default;
     };
 }
 

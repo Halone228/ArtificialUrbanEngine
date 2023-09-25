@@ -11,9 +11,6 @@ namespace aue {
         this->id = ObjectRegister.register_object(this);
     }
 
-    object_uuid_t BaseObject::getId() const {
-        return object_id;
-    }
 
     table_id_t BaseObject::get_table_id() const {
         return id;
